@@ -64,8 +64,11 @@
     text-transform:uppercase; letter-spacing:0.14em;
     font-size:13px; color:var(--white); font-weight:600;
   }
-  .nav-links{ display:flex; gap:32px; font-family:'Barlow Condensed',sans-serif;
-    text-transform:uppercase; letter-spacing:0.1em; font-size:13px; font-weight:600; }
+  .nav-links{
+    display:flex; gap:32px; font-family:'Barlow Condensed',sans-serif;
+    text-transform:uppercase; letter-spacing:0.1em; font-size:13px; font-weight:600;
+    position:absolute; left:50%; top:50%; transform:translate(-50%, -50%);
+  }
   .nav-links a{ color:var(--gray); transition:color .25s ease; }
   .nav-links a:hover, .nav-links a:focus-visible{ color:var(--lime); }
   .nav-cta{
@@ -94,6 +97,7 @@
     overflow:hidden;
   }
   .hero::before{
+    /* barbell plate silhouette, signature element */
     content:"";
     position:absolute; right:-160px; top:50%; transform:translateY(-50%);
     width:520px; height:520px; border-radius:50%;
@@ -199,22 +203,13 @@
   }
   .disc-card:hover .rule{ width:64px; }
 
-  /* ---------- REVIEWS ---------- */
-  .reviews{ background:var(--charcoal); border-bottom:1px solid var(--panel-line); }
-  .reviews-widget-wrap{
-    max-width:1180px; margin:0 auto;
-    min-height:120px;
-  }
-  /* Contenitore di fallback: visibile solo finché il widget non è collegato */
-  .reviews-placeholder-note{
-    max-width:640px; margin:0 auto 32px; text-align:center;
-    font-family:'Barlow Condensed', sans-serif; text-transform:uppercase;
-    letter-spacing:0.08em; font-size:13px; color:var(--gray-dark);
-    border:1px dashed var(--panel-line); padding:18px 22px;
-  }
-  .reviews-placeholder-note code{
-    color:var(--lime); font-family:monospace; letter-spacing:0;
-    text-transform:none;
+  /* ---------- RECENSIONI (placeholder section, sezione da completare) ---------- */
+  .reviews{ background:var(--black); border-bottom:1px solid var(--panel-line); }
+  .reviews-placeholder{
+    max-width:640px; margin:0 auto; text-align:center;
+    color:var(--gray-dark); font-family:'Barlow Condensed', sans-serif;
+    text-transform:uppercase; letter-spacing:0.1em; font-size:14px;
+    border:1px dashed var(--panel-line); padding:40px 24px;
   }
 
   /* ---------- CONTACT ---------- */
@@ -260,7 +255,8 @@
   .map-frame iframe{ width:100%; height:100%; border:0; display:block; }
   .map-label{
     font-family:'Barlow Condensed', sans-serif; text-transform:uppercase;
-    letter-spacing:0.14em; font-size:13px; color:var(--gray); margin-bottom:14px;
+    letter-spacing:0.14em; font-size:22px; font-weight:700; color:var(--lime);
+    text-align:center; margin-bottom:18px;
   }
 
   /* ---------- FOOTER ---------- */
@@ -349,23 +345,10 @@
 <section id="recensioni" class="section reviews">
   <div class="section-head">
     <span class="kicker">Cosa dicono di noi</span>
-    <h2>Le nostre <span>recensioni Google</span></h2>
-    <p>Le testimonianze reali di chi si allena con noi, importate direttamente dalla nostra scheda Google.</p>
+    <h2>Le nostre <span>recensioni</span></h2>
   </div>
-
-  <!--
-    === COME COLLEGARE LE RECENSIONI GOOGLE REALI ===
-    1. Crea un account su elfsight.com (o trustindex.io / embedsocial.com)
-    2. Aggiungi il widget "Google Reviews", collega la scheda "Calisthenics Verbania"
-    3. Imposta il layout a "Carousel" con 3 recensioni visibili e frecce sinistra/destra
-    4. Personalizza i colori: accento #d7ff2b (lime), sfondo card #232120, testo #f6f5f1
-    5. Copia qui sotto lo script e il div che Elfsight ti fornisce, al posto del placeholder
-       (rimuovi anche il tag <p class="reviews-placeholder-note"> quando il widget è attivo)
-  -->
-  <div class="reviews-widget-wrap">
-    <!-- Elfsight Google Reviews | Untitled Google Reviews -->
-    <script src="https://elfsightcdn.com/platform.js" async></script>
-    <div class="elfsight-app-627fd44a-0de9-46b4-aaa7-02778e76f75d" data-elfsight-app-lazy></div>
+  <div class="reviews-placeholder">
+    Sezione recensioni in arrivo — dimmi quali testimonianze vuoi inserire e le aggiungo qui.
   </div>
 </section>
 
@@ -389,14 +372,14 @@
     </div>
 
     <div>
-      <span class="map-label">Ci trovi qui</span>
+      <div class="map-label">Ci trovi qui</div>
       <div class="map-frame">
         <iframe
           title="Mappa Calisthenics Verbania"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3410.3499246789793!2d8.564301212459817!3d45.940853170965255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4785df005a94518b%3A0x9930bf6801616c7f!2sCalisthenics%20Verbania!5e1!3m2!1sit!2sit!4v1786282838726!5m2!1sit!2sit"
           width="600" height="450" style="border:0;" allowfullscreen=""
           loading="lazy"
-          referrerpolicy="strict-origin-when-cross-origin">
+          referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
     </div>
