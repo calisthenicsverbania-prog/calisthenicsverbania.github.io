@@ -51,19 +51,22 @@
   .nav{
     position:fixed; top:0; left:0; right:0; z-index:50;
     display:flex; align-items:center; justify-content:space-between;
-    padding:20px 6vw;
+    padding:0 6vw 0 0;
     background:linear-gradient(to bottom, rgba(18,17,16,0.85), transparent);
+    height:70px;
   }
-  .brand{ display:flex; align-items:center; }
+  .brand{ display:flex; align-items:center; gap:12px; height:100%; }
   .brand-mark{
     width:36px; height:36px; border:2px solid var(--lime);
     border-radius:50%; display:flex; align-items:center; justify-content:center;
     font-family:'Anton',sans-serif; color:var(--lime); font-size:14px;
   }
   .brand img{
-    height:36px;
+    height:100%;
     width:auto;
     display:block;
+    object-fit:contain;
+    object-position:left top;
   }
   .brand-name{
     font-family:'Barlow Condensed', sans-serif;
