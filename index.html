@@ -1,172 +1,374 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Tua Palestra | Fitness & Benessere</title>
-    <style>
-        /* Stili Generali */
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #121212; color: #ffffff; scroll-behavior: smooth; }
-        section { min-height: 100vh; padding: 80px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 1px solid #222; }
-        h2 { font-size: 2.5rem; margin-bottom: 20px; color: #ff4500; text-transform: uppercase; }
-        p { font-size: 1.2rem; max-width: 600px; line-height: 1.6; color: #ccc; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calisthenics Verbania | L'allenamento per tutti</title>
+<meta name="description" content="Calisthenics Verbania - Powerlifting, Calisthenics e Fitness. Prenota il tuo primo appuntamento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black: #121110;
+    --charcoal: #1c1a18;
+    --panel: #232120;
+    --panel-line: #35322f;
+    --lime: #d7ff2b;
+    --lime-dim: #a8c822;
+    --white: #f6f5f1;
+    --gray: #9a9691;
+    --gray-dark: #605c57;
+  }
 
-        /* Menu di Navigazione */
-        nav { position: fixed; top: 0; width: 100%; background: rgba(0, 0, 0, 0.9); padding: 15px 0; z-index: 1000; display: flex; justify-content: center; gap: 20px; }
-        nav a { color: #fff; text-decoration: none; font-weight: bold; font-size: 1rem; text-transform: uppercase; transition: color 0.3s; }
-        nav a:hover { color: #ff4500; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
 
-        /* Sezione Home & Stato Apertura */
-        #home { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://unsplash.com') no-repeat center center/cover; }
-        .status-badge { display: inline-block; padding: 10px 20px; font-weight: bold; border-radius: 50px; margin-top: 20px; font-size: 1.3rem; }
-        .open { background-color: #2ed573; color: #fff; }
-        .closed { background-color: #ff4757; color: #fff; }
-        .timetable { margin-top: 15px; font-size: 1.1rem; color: #aaa; }
+  html{ scroll-behavior:smooth; }
 
-        /* Sezione Cosa Facciamo */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1000px; margin-top: 40px; width: 100%; }
-        .card { background: #1e1e1e; padding: 30px; border-radius: 10px; border: 1px solid #333; transition: transform 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: #ff4500; }
-        .card h3 { color: #fff; margin-bottom: 15px; }
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:'Barlow', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
 
-        /* Sezione Contatti */
-        .btn-contact { display: inline-block; background-color: #ff4500; color: white; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 5px; margin-top: 20px; transition: background 0.3s; }
-        .btn-contact:hover { background-color: #e03d00; }
+  h1,h2,h3,.display{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+  }
 
-        /* Sezione Recensioni */
-        /*.reviews-container { display: flex; flex-direction: column; gap: 20px; max-width: 800px; width: 100%; margin-top: 30px; }
-        .review { background: #1a1a1a; padding: 20px; border-left: 5px solid #ff4500; border-radius: 0 10px 10px 0; text-align: left; }
-        .review-author { font-weight: bold; margin-top: 10px; color: #ff4500; font-size: 0.9rem; }*/
-        <!-- Elfsight Google Reviews | Untitled Google Reviews -->
-<script src="https://elfsightcdn.com/platform.js" async></script>
-<div class="elfsight-app-627fd44a-0de9-46b4-aaa7-02778e76f75d" data-elfsight-app-lazy></div>
-    </style>
+  a{ color:inherit; text-decoration:none; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 6vw;
+    background:linear-gradient(to bottom, rgba(18,17,16,0.85), transparent);
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand-mark{
+    width:36px; height:36px; border:2px solid var(--lime);
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-family:'Anton',sans-serif; color:var(--lime); font-size:14px;
+  }
+  .brand-name{
+    font-family:'Barlow Condensed', sans-serif;
+    text-transform:uppercase; letter-spacing:0.14em;
+    font-size:13px; color:var(--white); font-weight:600;
+  }
+  .nav-links{ display:flex; gap:32px; font-family:'Barlow Condensed',sans-serif;
+    text-transform:uppercase; letter-spacing:0.1em; font-size:13px; font-weight:600; }
+  .nav-links a{ color:var(--gray); transition:color .25s ease; }
+  .nav-links a:hover, .nav-links a:focus-visible{ color:var(--lime); }
+  .nav-cta{
+    border:1.5px solid var(--lime); color:var(--lime);
+    padding:9px 18px; font-family:'Barlow Condensed',sans-serif;
+    text-transform:uppercase; letter-spacing:0.1em; font-size:12px; font-weight:700;
+    transition:background .25s ease, color .25s ease;
+  }
+  .nav-cta:hover, .nav-cta:focus-visible{ background:var(--lime); color:var(--black); }
+
+  @media (max-width:820px){ .nav-links{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:140px 6vw 100px;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(215,255,43,0.07), transparent 45%),
+      radial-gradient(circle at 80% 75%, rgba(215,255,43,0.05), transparent 40%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0 2px, transparent 2px 42px),
+      linear-gradient(180deg, #171614 0%, #0f0e0d 100%);
+    border-bottom:1px solid var(--panel-line);
+    overflow:hidden;
+  }
+  .hero::before{
+    /* barbell plate silhouette, signature element */
+    content:"";
+    position:absolute; right:-160px; top:50%; transform:translateY(-50%);
+    width:520px; height:520px; border-radius:50%;
+    border:44px solid rgba(215,255,43,0.05);
+    box-shadow: inset 0 0 0 2px rgba(215,255,43,0.06);
+  }
+  .hero::after{
+    content:"";
+    position:absolute; left:-140px; bottom:-160px;
+    width:360px; height:360px; border-radius:50%;
+    border:30px solid rgba(255,255,255,0.03);
+  }
+  .kicker{
+    font-family:'Barlow Condensed', sans-serif; text-transform:uppercase;
+    letter-spacing:0.35em; font-size:13px; color:var(--lime); margin-bottom:22px;
+    position:relative; z-index:2;
+  }
+  .hero h1{
+    position:relative; z-index:2;
+    font-size:clamp(3rem, 10vw, 8.5rem);
+    line-height:0.92;
+    color:var(--white);
+  }
+  .hero h1 span{ color:var(--lime); }
+  .hero-sub{
+    position:relative; z-index:2;
+    margin-top:26px;
+    font-family:'Barlow Condensed', sans-serif;
+    text-transform:uppercase; letter-spacing:0.08em;
+    font-size:clamp(1.1rem,2.4vw,1.5rem);
+    color:var(--gray);
+    max-width:36ch;
+  }
+  .hero-actions{
+    position:relative; z-index:2;
+    margin-top:44px; display:flex; gap:18px; flex-wrap:wrap; justify-content:center;
+  }
+  .btn-primary{
+    background:var(--lime); color:var(--black);
+    padding:16px 34px; font-family:'Barlow Condensed',sans-serif;
+    text-transform:uppercase; letter-spacing:0.08em; font-size:15px; font-weight:700;
+    border:1.5px solid var(--lime);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary:hover, .btn-primary:focus-visible{
+    transform:translateY(-2px); box-shadow:0 10px 24px rgba(215,255,43,0.18);
+  }
+  .btn-ghost{
+    border:1.5px solid var(--panel-line); color:var(--white);
+    padding:16px 34px; font-family:'Barlow Condensed',sans-serif;
+    text-transform:uppercase; letter-spacing:0.08em; font-size:15px; font-weight:700;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .btn-ghost:hover, .btn-ghost:focus-visible{ border-color:var(--lime); color:var(--lime); }
+
+  .scroll-cue{
+    position:absolute; bottom:30px; left:50%; transform:translateX(-50%);
+    width:1px; height:46px; background:linear-gradient(var(--lime), transparent);
+    z-index:2;
+  }
+
+  /* ---------- SECTION HEADER ---------- */
+  .section{ padding:120px 6vw; }
+  .section-head{ text-align:center; margin-bottom:64px; }
+  .section-head .kicker{ margin-bottom:14px; }
+  .section-head h2{
+    font-size:clamp(2rem, 4.5vw, 3.4rem);
+    color:var(--white);
+  }
+  .section-head h2 span{ color:var(--lime); }
+  .section-head p{
+    margin-top:16px; color:var(--gray); font-size:1.05rem;
+    max-width:52ch; margin-left:auto; margin-right:auto;
+  }
+
+  /* ---------- DISCIPLINES ---------- */
+  .disciplines{ background:var(--charcoal); border-bottom:1px solid var(--panel-line); }
+  .card-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:2px;
+    max-width:1180px; margin:0 auto;
+    background:var(--panel-line);
+    border:1px solid var(--panel-line);
+  }
+  @media (max-width:900px){ .card-grid{ grid-template-columns:1fr; } }
+
+  .disc-card{
+    background:var(--panel);
+    padding:48px 36px 40px;
+    position:relative;
+    transition:background .3s ease;
+  }
+  .disc-card:hover{ background:#28251f; }
+  .disc-index{
+    font-family:'Barlow Condensed', sans-serif; font-weight:700;
+    color:var(--gray-dark); font-size:13px; letter-spacing:0.2em; text-transform:uppercase;
+  }
+  .disc-icon{ margin:26px 0 22px; width:52px; height:52px; color:var(--lime); }
+  .disc-card h3{ font-size:1.7rem; color:var(--white); margin-bottom:14px; }
+  .disc-card p{ color:var(--gray); line-height:1.65; font-size:0.98rem; }
+  .disc-card .rule{
+    width:36px; height:3px; background:var(--lime); margin-top:24px;
+    transform-origin:left; transition:width .3s ease;
+  }
+  .disc-card:hover .rule{ width:64px; }
+
+  /* ---------- CONTACT ---------- */
+  .contact{ background:var(--black); }
+  .contact-grid{
+    max-width:1180px; margin:0 auto;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px;
+    align-items:start;
+  }
+  @media (max-width:860px){ .contact-grid{ grid-template-columns:1fr; gap:48px; } }
+
+  .contact-panel h3{
+    font-size:2rem; color:var(--white); margin-bottom:8px;
+  }
+  .contact-panel .eyebrow{
+    font-family:'Barlow Condensed',sans-serif; color:var(--lime);
+    text-transform:uppercase; letter-spacing:0.25em; font-size:12px; margin-bottom:16px;
+    display:block;
+  }
+  .contact-panel > p{ color:var(--gray); margin-bottom:32px; max-width:44ch; line-height:1.6; }
+
+  .contact-list{ display:flex; flex-direction:column; gap:0; border-top:1px solid var(--panel-line); }
+  .contact-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 4px; border-bottom:1px solid var(--panel-line);
+    font-family:'Barlow Condensed', sans-serif;
+  }
+  .contact-row .label{
+    text-transform:uppercase; letter-spacing:0.12em; font-size:13px; color:var(--gray);
+  }
+  .contact-row .value{
+    font-size:1.15rem; font-weight:600; color:var(--white);
+    transition:color .2s ease;
+  }
+  .contact-row a.value:hover, .contact-row a.value:focus-visible{ color:var(--lime); }
+
+  .map-frame{
+    border:1px solid var(--panel-line);
+    aspect-ratio: 4/3;
+    overflow:hidden;
+    filter:grayscale(0.4) contrast(1.05);
+  }
+  .map-frame iframe{ width:100%; height:100%; border:0; display:block; }
+  .map-label{
+    font-family:'Barlow Condensed', sans-serif; text-transform:uppercase;
+    letter-spacing:0.14em; font-size:13px; color:var(--gray); margin-bottom:14px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:36px 6vw; border-top:1px solid var(--panel-line);
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:'Barlow Condensed', sans-serif; text-transform:uppercase;
+    letter-spacing:0.1em; font-size:12px; color:var(--gray-dark);
+    flex-wrap:wrap; gap:12px;
+  }
+  footer .lime{ color:var(--lime); }
+</style>
 </head>
 <body>
 
-    <!-- Navigazione fissa per lo scorrimento -->
-    <nav>
-        <a href="#home">Orari</a>
-        <a href="#attivita">Cosa Facciamo</a>
-        <a href="#contatti">Contatti</a>
-        <a href="#recensioni">Recensioni</a>
-    </nav>
+<nav class="nav">
+  <div class="brand">
+    <div class="brand-mark">CV</div>
+    <div class="brand-name">Calisthenics Verbania</div>
+  </div>
+  <div class="nav-links">
+    <a href="#discipline">Discipline</a>
+    <a href="#contatti">Contatti</a>
+  </div>
+  <a class="nav-cta" href="#contatti">Prenota</a>
+</nav>
 
-    <!-- 1. SEZIONE HOME / ORARI (DINAMICA) -->
-    <section id="home">
-        <h1>BENVENUTO IN PALESTRA</h1>
-        <p>Il centro fitness ideale per raggiungere i tuoi obiettivi fisici.</p>
-        
-        <!-- Stato di apertura generato da JS -->
-        <div id="status-badge" class="status-badge">Verifica orario...</div>
-        
-                <div class="timetable">
-            <p><strong>Lunedì:</strong> 10:00 - 21:00</p>
-            <p><strong>Martedì:</strong> 10:00 - 21:00 <small style="color: #ff4500;">(Corso Kids: 16:45 - 17:00)</small></p>
-            <p><strong>Mercoledì:</strong> 10:00 - 21:00</p>
-            <p><strong>Giovedì:</strong> 10:00 - 21:00 <small style="color: #ff4500;">(Corso Kids: 16:45 - 17:00)</small></p>
-            <p><strong>Venerdì:</strong> 10:00 - 21:00</p>
-            <p><strong>Sabato:</strong> 10:00 - 13:00</p>
-            <p><strong>Domenica:</strong> 14:30 - 18:00</p>
+<header class="hero">
+  <div class="kicker">Powerlifting — Calisthenics — Fitness</div>
+  <h1>Calisthenics<br><span>Verbania</span></h1>
+  <p class="hero-sub">L'allenamento per tutti</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="#contatti">Prenota il primo appuntamento</a>
+    <a class="btn-ghost" href="#discipline">Scopri le discipline</a>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"></div>
+</header>
+
+<section id="discipline" class="section disciplines">
+  <div class="section-head">
+    <span class="kicker">Le nostre discipline</span>
+    <h2>Tre strade, <span>un obiettivo</span></h2>
+    <p>Ogni percorso è costruito sulla scienza del movimento: scegli la disciplina più affine a te, o combinale per un allenamento completo.</p>
+  </div>
+
+  <div class="card-grid">
+    <article class="disc-card">
+      <span class="disc-index">01 / Forza massima</span>
+      <svg class="disc-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+        <circle cx="10" cy="24" r="6"/>
+        <circle cx="38" cy="24" r="6"/>
+        <line x1="16" y1="24" x2="32" y2="24"/>
+        <line x1="10" y1="18" x2="10" y2="30"/>
+        <line x1="38" y1="18" x2="38" y2="30"/>
+      </svg>
+      <h3>Powerlifting</h3>
+      <p>La scienza della forza massima applicata a Squat, Panca e Stacco: tecnica millimetrica, programmazione rigorosa e performance pura per superare ogni limite fisico.</p>
+      <div class="rule"></div>
+    </article>
+
+    <article class="disc-card">
+      <span class="disc-index">02 / Controllo del corpo</span>
+      <svg class="disc-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="24" cy="10" r="4"/>
+        <path d="M24 14 L24 26 L14 38 M24 26 L34 38"/>
+        <path d="M14 20 L24 26 L34 20"/>
+      </svg>
+      <h3>Calisthenics</h3>
+      <p>Il Calisthenics trasforma il peso corporeo in pura arte: una disciplina dove la forza incontra l'eleganza del movimento, per sfidare la gravità e riscoprire la bellezza del controllo totale di sé.</p>
+      <div class="rule"></div>
+    </article>
+
+    <article class="disc-card">
+      <span class="disc-index">03 / Longevità</span>
+      <svg class="disc-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 26 L14 26 L18 14 L24 34 L28 22 L32 26 L42 26"/>
+      </svg>
+      <h3>Fitness</h3>
+      <p>Il Fitness è il motore della tua longevità: un percorso personalizzato che unisce energia, salute ed efficienza fisica per farti sentire al massimo ogni giorno.</p>
+      <div class="rule"></div>
+    </article>
+  </div>
+</section>
+
+<section id="contatti" class="section contact">
+  <div class="contact-grid">
+    <div class="contact-panel">
+      <span class="eyebrow">Fissa un appuntamento</span>
+      <h3>Inizia il tuo percorso</h3>
+      <p>Scrivici per prenotare la tua prima lezione di prova: ti aiutiamo a trovare la disciplina giusta per i tuoi obiettivi.</p>
+
+      <div class="contact-list">
+        <div class="contact-row">
+          <span class="label">Whatsapp</span>
+          <a class="value" href="https://wa.me/393478152266" target="_blank" rel="noopener">347 815 2266</a>
         </div>
-
-    </section>
-
-    <!-- 2. SEZIONE COSA FACCIAMO -->
-    <section id="attivita">
-        <h2>Cosa Facciamo</h2>
-        <p>Offriamo programmi personalizzati e corsi adatti a ogni livello di preparazione.</p>
-        <div class="grid">
-            <div class="card">
-                <h3>Sala Pesi</h3>
-                <p>Attrezzature di ultima generazione ed istruttori sempre presenti in sala per seguirti.</p>
-            </div>
-            <div class="card">
-                <h3>Corsi di Gruppo</h3>
-                <p>Funzionale, Pilates, Cross Training e Spinning per allenarsi a ritmo di musica.</p>
-            </div>
-            <div class="card">
-                <h3>Personal Training</h3>
-                <p>Percorsi individuali mirati per ottimizzare i tuoi risultati nel minor tempo possibile.</p>
-            </div>
+        <div class="contact-row">
+          <span class="label">Instagram</span>
+          <a class="value" href="https://instagram.com/calisthenics_verbania" target="_blank" rel="noopener">@Calisthenics_Verbania</a>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- 3. SEZIONE CONTATTI -->
-    <section id="contatti">
-        <h2>Contatti</h2>
-        <p>Hai domande? Vuoi attivare una settimana di prova gratuita? Scrivici subito.</p>
-        <p style="margin-top: 15px;">📍 Via Roma 123, Milano</p>
-        <p>📞 Tel: +39 02 1234567</p>
-        <!-- Sostituisci con il tuo link WhatsApp reale o email -->
-        <a href="https://wa.me" class="btn-contact" target="_blank">Scrivici su WhatsApp</a>
-    </section>
+    <div>
+      <span class="map-label">Ci trovi qui</span>
+      <div class="map-frame">
+        <iframe
+          title="Mappa Calisthenics Verbania"
+          src="https://www.google.com/maps?q=Verbania&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- 4. SEZIONE RECENSIONI -->
-    <section id="recensioni">
-        <h2>Cosa dicono di noi</h2>
-        <div class="reviews-container">
-            <div class="review">
-                <p>"Palestra pulitissima, coach preparati e un'atmosfera fantastica. Consiglio vivamente il corso di funzionale!"</p>
-                <div class="review-author">⭐ ⭐ ⭐ ⭐ ⭐ - Marco R.</div>
-            </div>
-            <div class="review">
-                <p>"Frequento la sala pesi da sei mesi e mi trovo benissimo. Gli orari di apertura mattutini sono perfetti per me."</p>
-                <div class="review-author">⭐ ⭐ ⭐ ⭐ ⭐ - Giulia B.</div>
-            </div>
-        </div>
-    </section>
+<footer>
+  <span>© <span id="year"></span> Calisthenics Verbania</span>
+  <span>Powerlifting <span class="lime">·</span> Calisthenics <span class="lime">·</span> Fitness</span>
+</footer>
 
-    <!-- LOGICA DI APERTURA DINAMICA -->
-        <!-- LOGICA DI APERTURA DINAMICA -->
-    <script>
-        function verificaApertura() {
-            const oraAttuale = new Date();
-            const giorno = oraAttuale.getDay(); // 0 = Domenica, 1 = Lunedì, ..., 6 = Sabato
-            const ora = oraAttuale.getHours();
-            const minuti = oraAttuale.getMinutes();
-            const tempoCorrente = ora + (minuti / 60);
-
-            const badge = document.getElementById('status-badge');
-            let aperto = false;
-
-            switch(giorno) {
-                case 1: // Lunedì
-                case 2: // Martedì
-                case 3: // Mercoledì
-                case 4: // Giovedì
-                case 5: // Venerdì
-                    if (tempoCorrente >= 10.0 && tempoCorrente < 21.0) {
-                        aperto = true;
-                    }
-                    break;
-                
-                case 6: // Sabato
-                    if (tempoCorrente >= 10.0 && tempoCorrente < 13.0) {
-                        aperto = true;
-                    }
-                    break;
-                
-                case 0: // Domenica
-                    if (tempoCorrente >= 14.5 && tempoCorrente < 18.0) {
-                        aperto = true;
-                    }
-                    break;
-            }
-
-            if (aperto) {
-                badge.textContent = "🟢 APERTI ORA";
-                badge.className = "status-badge open";
-            } else {
-                badge.textContent = "🔴 CHIUSI IN QUESTO MOMENTO";
-                badge.className = "status-badge closed";
-            }
-        }
-
-        // Esegui il controllo al caricamento della pagina
-        verificaApertura();
-    </script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
