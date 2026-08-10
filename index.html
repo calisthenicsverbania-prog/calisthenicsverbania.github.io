@@ -218,6 +218,47 @@
   }
   .disc-card:hover .rule{ width:64px; }
 
+  /* ---------- HOURS ---------- */
+  .hours{ background:var(--black); border-bottom:1px solid var(--panel-line); }
+  .hours-status{
+    display:flex; align-items:center; justify-content:center; gap:12px;
+    margin:0 auto 56px; max-width:440px;
+    padding:14px 28px;
+    border:1.5px solid var(--panel-line);
+    font-family:'Barlow Condensed', sans-serif; text-transform:uppercase;
+    letter-spacing:0.12em; font-weight:700; font-size:15px;
+    transition:border-color .3s ease, color .3s ease;
+  }
+  .hours-status.is-open{ border-color:var(--lime); color:var(--lime); }
+  .hours-status.is-closed{ color:var(--gray); border-color:var(--panel-line); }
+  .status-dot{
+    width:10px; height:10px; border-radius:50%;
+    background:currentColor; flex-shrink:0;
+  }
+  .hours-status.is-open .status-dot{ box-shadow:0 0 10px var(--lime); }
+
+  .hours-list{ max-width:640px; margin:0 auto; border-top:1px solid var(--panel-line); }
+  .hours-row{
+    display:flex; align-items:baseline; justify-content:space-between; gap:16px;
+    padding:16px 4px; border-bottom:1px solid var(--panel-line);
+    font-family:'Barlow Condensed', sans-serif;
+    transition:background .2s ease;
+  }
+  .hours-row.is-today{ background:rgba(204,255,0,0.05); }
+  .hours-row .day{
+    text-transform:uppercase; letter-spacing:0.1em; font-size:15px;
+    color:var(--white); font-weight:600;
+  }
+  .hours-row.is-today .day{ color:var(--lime); }
+  .hours-row .day .today-tag{
+    margin-left:8px; font-size:11px; color:var(--lime); letter-spacing:0.08em;
+  }
+  .hours-row .time{ color:var(--gray); font-size:15px; text-align:right; }
+  .hours-row .kids-note{
+    display:block; font-size:12px; color:var(--gray-dark);
+    margin-top:2px; text-transform:none; letter-spacing:0;
+  }
+
   /* ---------- REVIEWS ---------- */
   .reviews{ background:var(--charcoal); border-bottom:1px solid var(--panel-line); }
   .reviews-widget-wrap{
@@ -310,6 +351,7 @@
   </div>
   <div class="nav-links">
     <a href="#discipline">Discipline</a>
+    <a href="#orari">Orari</a>
     <a href="#recensioni">Recensioni</a>
     <a href="#contatti">Contatti</a>
   </div>
@@ -373,6 +415,50 @@
   </div>
 </section>
 
+<section id="orari" class="section hours">
+  <div class="section-head">
+    <span class="kicker">I nostri orari</span>
+    <h2>Quando <span>siamo aperti</span></h2>
+    <p>Consulta gli orari di ogni giorno e scopri se in questo momento siamo aperti.</p>
+  </div>
+
+  <div class="hours-status is-closed" id="hoursStatus">
+    <span class="status-dot"></span>
+    <span id="statusText">Verifica orario in corso...</span>
+  </div>
+
+  <div class="hours-list" id="hoursList">
+    <div class="hours-row" data-day="1">
+      <span class="day">Lunedì</span>
+      <span class="time">10:00 - 21:00</span>
+    </div>
+    <div class="hours-row" data-day="2">
+      <span class="day">Martedì</span>
+      <span class="time">10:00 - 21:00<span class="kids-note">Corso kids 14:45 - 18:00</span></span>
+    </div>
+    <div class="hours-row" data-day="3">
+      <span class="day">Mercoledì</span>
+      <span class="time">10:00 - 21:00</span>
+    </div>
+    <div class="hours-row" data-day="4">
+      <span class="day">Giovedì</span>
+      <span class="time">10:00 - 21:00<span class="kids-note">Corso kids 14:45 - 18:00</span></span>
+    </div>
+    <div class="hours-row" data-day="5">
+      <span class="day">Venerdì</span>
+      <span class="time">10:00 - 21:00</span>
+    </div>
+    <div class="hours-row" data-day="6">
+      <span class="day">Sabato</span>
+      <span class="time">10:00 - 13:00</span>
+    </div>
+    <div class="hours-row" data-day="0">
+      <span class="day">Domenica</span>
+      <span class="time">14:30 - 18:00</span>
+    </div>
+  </div>
+</section>
+
 <section id="recensioni" class="section reviews">
   <div class="section-head">
     <span class="kicker">Cosa dicono di noi</span>
@@ -431,6 +517,56 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function(){
+    // Orari: minuti da mezzanotte, indicizzati come Date.getDay() (0 = Domenica)
+    var hours = {
+      0: [16*60+30, 18*60],   // Domenica
+      1: [10*60, 21*60],      // Lunedì
+      2: [10*60, 21*60],      // Martedì
+      3: [10*60, 21*60],      // Mercoledì
+      4: [10*60, 21*60],      // Giovedì
+      5: [10*60, 21*60],      // Venerdì
+      6: [10*60, 13*60]       // Sabato
+    };
+
+    function updateStatus(){
+      var now = new Date();
+      var day = now.getDay();
+      var minutesNow = now.getHours()*60 + now.getMinutes();
+      var range = hours[day];
+      var isOpen = minutesNow >= range[0] && minutesNow < range[1];
+
+      var statusEl = document.getElementById('hoursStatus');
+      var textEl = document.getElementById('statusText');
+      if(isOpen){
+        statusEl.classList.add('is-open');
+        statusEl.classList.remove('is-closed');
+        textEl.textContent = 'Aperti ora';
+      } else {
+        statusEl.classList.add('is-closed');
+        statusEl.classList.remove('is-open');
+        textEl.textContent = 'Chiuso ora';
+      }
+
+      document.querySelectorAll('#hoursList .hours-row').forEach(function(row){
+        var isToday = parseInt(row.getAttribute('data-day'), 10) === day;
+        row.classList.toggle('is-today', isToday);
+        var tag = row.querySelector('.today-tag');
+        if(isToday && !tag){
+          var span = document.createElement('span');
+          span.className = 'today-tag';
+          span.textContent = '· Oggi';
+          row.querySelector('.day').appendChild(span);
+        } else if(!isToday && tag){
+          tag.remove();
+        }
+      });
+    }
+
+    updateStatus();
+    setInterval(updateStatus, 60000);
+  })();
 </script>
 
 </body>
