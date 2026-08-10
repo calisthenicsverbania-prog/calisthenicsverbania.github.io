@@ -26,6 +26,29 @@
 
   html{ scroll-behavior:smooth; }
 
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+    will-change:opacity, transform;
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  .reveal-group > *:nth-child(1){ transition-delay:0s; }
+  .reveal-group > *:nth-child(2){ transition-delay:.12s; }
+  .reveal-group > *:nth-child(3){ transition-delay:.24s; }
+  .reveal-group > *:nth-child(4){ transition-delay:.36s; }
+  .reveal-group > *:nth-child(5){ transition-delay:.48s; }
+  .reveal-group > *:nth-child(6){ transition-delay:.6s; }
+  .reveal-group > *:nth-child(7){ transition-delay:.72s; }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+  }
+
   body{
     background:var(--black);
     color:var(--white);
@@ -370,14 +393,14 @@
 </header>
 
 <section id="discipline" class="section disciplines">
-  <div class="section-head">
+  <div class="section-head reveal">
     <span class="kicker">Le nostre discipline</span>
     <h2>Tre strade, <span>un obiettivo</span></h2>
     <p>Ogni percorso è costruito sulla scienza del movimento: scegli la disciplina più affine a te, o combinale per un allenamento completo.</p>
   </div>
 
-  <div class="card-grid">
-    <article class="disc-card">
+  <div class="card-grid reveal-group">
+    <article class="disc-card reveal">
       <span class="disc-index">01 / Forza massima</span>
       <svg class="disc-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
         <circle cx="10" cy="24" r="6"/>
@@ -391,7 +414,7 @@
       <div class="rule"></div>
     </article>
 
-    <article class="disc-card">
+    <article class="disc-card reveal">
       <span class="disc-index">02 / Controllo del corpo</span>
       <svg class="disc-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="24" cy="10" r="4"/>
@@ -403,7 +426,7 @@
       <div class="rule"></div>
     </article>
 
-    <article class="disc-card">
+    <article class="disc-card reveal">
       <span class="disc-index">03 / Longevità</span>
       <svg class="disc-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 26 L14 26 L18 14 L24 34 L28 22 L32 26 L42 26"/>
@@ -416,43 +439,43 @@
 </section>
 
 <section id="orari" class="section hours">
-  <div class="section-head">
+  <div class="section-head reveal">
     <span class="kicker">I nostri orari</span>
     <h2>Quando <span>siamo aperti</span></h2>
     <p>Consulta gli orari di ogni giorno e scopri se in questo momento siamo aperti.</p>
   </div>
 
-  <div class="hours-status is-closed" id="hoursStatus">
+  <div class="hours-status is-closed reveal" id="hoursStatus">
     <span class="status-dot"></span>
     <span id="statusText">Verifica orario in corso...</span>
   </div>
 
-  <div class="hours-list" id="hoursList">
-    <div class="hours-row" data-day="1">
+  <div class="hours-list reveal-group" id="hoursList">
+    <div class="hours-row reveal" data-day="1">
       <span class="day">Lunedì</span>
       <span class="time">10:00 - 21:00</span>
     </div>
-    <div class="hours-row" data-day="2">
+    <div class="hours-row reveal" data-day="2">
       <span class="day">Martedì</span>
       <span class="time">10:00 - 21:00<span class="kids-note">Corso kids 16:45 - 18:00</span></span>
     </div>
-    <div class="hours-row" data-day="3">
+    <div class="hours-row reveal" data-day="3">
       <span class="day">Mercoledì</span>
       <span class="time">10:00 - 21:00</span>
     </div>
-    <div class="hours-row" data-day="4">
+    <div class="hours-row reveal" data-day="4">
       <span class="day">Giovedì</span>
       <span class="time">10:00 - 21:00<span class="kids-note">Corso kids 16:45 - 18:00</span></span>
     </div>
-    <div class="hours-row" data-day="5">
+    <div class="hours-row reveal" data-day="5">
       <span class="day">Venerdì</span>
       <span class="time">10:00 - 21:00</span>
     </div>
-    <div class="hours-row" data-day="6">
+    <div class="hours-row reveal" data-day="6">
       <span class="day">Sabato</span>
       <span class="time">10:00 - 13:00</span>
     </div>
-    <div class="hours-row" data-day="0">
+    <div class="hours-row reveal" data-day="0">
       <span class="day">Domenica</span>
       <span class="time">14:30 - 18:00</span>
     </div>
@@ -460,21 +483,21 @@
 </section>
 
 <section id="recensioni" class="section reviews">
-  <div class="section-head">
+  <div class="section-head reveal">
     <span class="kicker">Cosa dicono di noi</span>
     <h2>Le nostre <span>recensioni Google</span></h2>
     <p>Le testimonianze reali di chi si allena con noi, importate direttamente dalla nostra scheda Google.</p>
   </div>
 
-  <div class="reviews-widget-wrap">
+  <div class="reviews-widget-wrap reveal">
     <script src="https://elfsightcdn.com/platform.js" async></script>
     <div class="elfsight-app-627fd44a-0de9-46b4-aaa7-02778e76f75d" data-elfsight-app-lazy></div>
   </div>
 </section>
 
 <section id="contatti" class="section contact">
-  <div class="contact-grid">
-    <div class="contact-panel">
+  <div class="contact-grid reveal-group">
+    <div class="contact-panel reveal">
       <span class="eyebrow">Fissa un appuntamento</span>
       <h3>Inizia il tuo percorso</h3>
       <p>Scrivici per prenotare la tua prima lezione di prova: ti aiutiamo a trovare la disciplina giusta per i tuoi obiettivi.</p>
@@ -497,7 +520,7 @@
 
     <div>
       <span class="map-label">Ci trovi qui</span>
-      <div class="map-frame">
+      <div class="map-frame reveal">
         <iframe
           title="Mappa Calisthenics Verbania"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3410.3499246789793!2d8.564301212459817!3d45.940853170965255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4785df005a94518b%3A0x9930bf6801616c7f!2sCalisthenics%20Verbania!5e1!3m2!1sit!2sit!4v1786282838726!5m2!1sit!2sit"
@@ -566,6 +589,26 @@
 
     updateStatus();
     setInterval(updateStatus, 60000);
+  })();
+
+  (function(){
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.reveal');
+    if(reduceMotion || !('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('is-visible'); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    items.forEach(function(el){ observer.observe(el); });
   })();
 </script>
 
